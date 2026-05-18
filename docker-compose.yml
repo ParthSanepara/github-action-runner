@@ -1,0 +1,15 @@
+services:
+  runner:
+    build: .
+    image: github-action-runner:latest
+    restart: always   # ephemeral runner exits after each job; restart re-registers
+    environment:
+      # Set ONE of GITHUB_PAT (recommended, auto-renews) or RUNNER_TOKEN (one-shot).
+      GITHUB_PAT: ${GITHUB_PAT:-}
+      RUNNER_TOKEN: ${RUNNER_TOKEN:-}
+      # Set ONE of:
+      GITHUB_REPOSITORY: ${GITHUB_REPOSITORY:-}
+      GITHUB_ORG: ${GITHUB_ORG:-}
+      RUNNER_NAME: ${RUNNER_NAME:-}
+      RUNNER_LABELS: ${RUNNER_LABELS:-self-hosted,linux}
+      RUNNER_GROUP: ${RUNNER_GROUP:-}
