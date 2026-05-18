@@ -65,8 +65,8 @@ jobs:
             [[ "${{ inputs.mark_latest }}" == "true" ]] && tags+="${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE_NAME}:latest\n"
           fi
           if [[ "${{ inputs.push_ghcr }}" == "true" ]]; then
-            tags+="ghcr.io/${{ github.repository_owner }}/${IMAGE_NAME}:${{ inputs.version }}\n"
-            [[ "${{ inputs.mark_latest }}" == "true" ]] && tags+="ghcr.io/${{ github.repository_owner }}/${IMAGE_NAME}:latest\n"
+            tags+="ghcr.io/${{ github.repository_owner | lower }}/${IMAGE_NAME}:${{ inputs.version }}\n"
+            [[ "${{ inputs.mark_latest }}" == "true" ]] && tags+="ghcr.io/${{ github.repository_owner | lower }}/${IMAGE_NAME}:latest\n"
           fi
           {
             echo "list<<EOF"
